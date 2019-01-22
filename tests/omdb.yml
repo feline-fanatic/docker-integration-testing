@@ -1,0 +1,81 @@
+---
+ - name: Nine Lives
+   request:
+     uri: /?apiKey=123&t=NineLives
+     method: GET
+   response:
+     code: 200
+     body: '
+      {"Ratings": [{
+          "Source": "Internet Movie Database",
+          "Value": "5.3/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "14%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "11/100"
+        }
+    ]}'
+ - name: Aristocats
+   request:
+     uri: /?apiKey=123&t=Aristocats
+     method: GET
+   response:
+     code: 200
+     body: '
+      {"Ratings": [{
+          "Source": "Internet Movie Database",
+          "Value": "7.1/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "68%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "66/100"
+        }
+    ]}'
+ - name: Keanu
+   request:
+     uri: /?apiKey=123&t=Keanu
+     method: GET
+   response:
+     code: 200
+     body: '
+      {"Ratings": [{
+          "Source": "Internet Movie Database",
+          "Value": "6.3/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "77%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "63/100"
+        }
+    ]}'
+ - name: Garfield
+   request:
+     uri: /?apiKey=123&t=Garfield
+     method: GET
+   response:
+     code: 200
+     body: '
+      {"Ratings": [{
+          "Source": "Internet Movie Database",
+          "Value": "5.0/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "15%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "27/100"
+        }
+    ]}'

@@ -1,0 +1,48 @@
+version: '3.6'
+
+services:
+  sample-project-test:
+    image: sample-project-test:latest
+    environment:
+      SERVICE_ENDPOINT_MAP: "s3=http://localstack:4572"
+      S3_REGION: "us-east-1"
+      S3_BUCKET: "rv-test"
+      SFTP_ENV: "local"
+      SFTP_HOST: "sftp"
+      SFTP_PORT: "22"
+      SFTP_USER: "sample-project"
+      SFTP_PRIVATE_KEY: "test"
+      TEST_PRIVATE_KEY_FILE: "/go/src/github.com/feline-fanatic/docker-integration-testing/tests/keys/ssh-key"
+      SFTP_PASSPHRASE: "pass123"
+      SFTP_HOST_KEY: "testing"
+      SFTP_FILE_PATH: "data/movie-list.json"
+      SFTP_TIMEOUT: 30
+      OMDB_BASE_URL: "http://omdb:9090"
+      OMDB_API_KEY: 123
+      OMDB_TIMEOUT: 30
+    depends_on:
+      - sftp
+      - localstack
+      - omdb
+  sftp:
+    image: atmoz/sftp:latest
+    volumes:
+      - ./data:/home/sample-project/data
+      - ./keys:/home/sample-project/.ssh/keys
+    ports:
+      - "2222:22"
+    command: sample-project::1001
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4567-4583:4567-4583"
+      - "8080:8080"
+    environment:
+      SERVICES: "s3"
+  omdb:
+    image: quii/mockingjay-server:1.2
+    volumes:
+      - ./:/config
+    command: -config=/config/omdb.yml
+    ports:
+      - 3001:3001

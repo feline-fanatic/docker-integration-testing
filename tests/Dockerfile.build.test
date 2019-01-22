@@ -1,0 +1,7 @@
+FROM golang:latest
+
+COPY . /go/src/github.com/feline-fanatic/docker-integration-testing
+
+WORKDIR /go/src/github.com/feline-fanatic/docker-integration-testing
+
+CMD ["go", "test", "-v", "-cover", "./..."]
